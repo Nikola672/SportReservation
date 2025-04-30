@@ -4,15 +4,15 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class User {
+public class SportCenter {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
     @Column(nullable = false)
     public String name;
     @Column(nullable = false)
-    public String email;
+    public String location;
 
-    @ManyToMany(mappedBy = "users")
-    public List<Reservation> reservations;
+    @OneToMany(mappedBy = "sportCenter")
+    public List<Pitch> pitches;
 }
