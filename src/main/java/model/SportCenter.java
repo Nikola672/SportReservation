@@ -13,6 +13,10 @@ public class SportCenter {
     @Column(nullable = false)
     public String location;
 
-    @OneToMany(mappedBy = "sportCenter")
+    
+    @OneToMany(mappedBy = "sportCenter", cascade = CascadeType.ALL, orphanRemoval = true)
     public List<Pitch> pitches;
+    
+    @OneToMany(mappedBy = "sportCenter", cascade = CascadeType.ALL, orphanRemoval = true)
+    public List<Bar> bars;
 }

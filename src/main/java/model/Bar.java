@@ -9,6 +9,8 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.TypedQuery;
@@ -64,5 +66,7 @@ public class Bar extends PanacheEntity {
 		r.persist();
 		return "Hello " + name;
 	}
-
+	@ManyToOne
+	@JoinColumn(name = "sportCenter_id", nullable = false)
+	private SportCenter sportCenter;
 }

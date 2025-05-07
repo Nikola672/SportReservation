@@ -14,7 +14,8 @@ public class Pitch {
     public String type;
 
     @ManyToOne
-    public SportCenter sportCenter;
+	@JoinColumn(name = "sportCenter_id", nullable = false)
+	private SportCenter sportCenter;
 
     @OneToMany(mappedBy = "pitch")
     public List<Reservation> reservations;

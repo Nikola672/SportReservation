@@ -15,7 +15,8 @@ public class Reservation {
     public LocalDateTime endTime;
 
     @ManyToOne
-    public Pitch pitch;
+	@JoinColumn(name = "pitch_id", nullable = false)
+	private Pitch pitch;
 
     @ManyToMany
     @JoinTable(name = "reservation_user",
