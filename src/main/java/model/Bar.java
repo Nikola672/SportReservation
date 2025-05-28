@@ -27,8 +27,12 @@ import services.bar_service;
 @Path("/bar")
 public class Bar extends PanacheEntity {
 
+	@Column
 	private String name;
 
+	@ManyToOne
+	@JoinColumn(name = "sportCenter_id", nullable = false)
+	public SportCenter sportCenter;
 	
 	public Bar() {
 	}
@@ -53,20 +57,19 @@ public class Bar extends PanacheEntity {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public SportCenter getSportCenter() {
+		return sportCenter;
+	}
+
+	public void setSportCenter(SportCenter sportCenter) {
+		this.sportCenter = sportCenter;
+	}
+
 	public String toString() {
 		return "Bar [id=" + id + ", name=" + name + "]";
 	}
 
-	@GET
-	@Transactional
-	@Produces(MediaType.TEXT_PLAIN)
-	public String hello(@QueryParam("name") String name) {
-		Bar r = new Bar();
-		r.name = name;
-		r.persist();
-		return "Hello " + name;
-	}
-	@ManyToOne
-	@JoinColumn(name = "sportCenter_id", nullable = false)
-	private SportCenter sportCenter;
+	
+
 }

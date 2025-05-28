@@ -3,20 +3,33 @@ package model;
 import jakarta.persistence.*;
 import java.util.List;
 
-@Entity
-public class SportCenter {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
-    @Column(nullable = false)
-    public String name;
-    @Column(nullable = false)
-    public String location;
+import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
-    
-    @OneToMany(mappedBy = "sportCenter", cascade = CascadeType.ALL, orphanRemoval = true)
-    public List<Pitch> pitches;
-    
-    @OneToMany(mappedBy = "sportCenter", cascade = CascadeType.ALL, orphanRemoval = true)
-    public List<Bar> bars;
+@Entity
+public class SportCenter extends PanacheEntity {
+	@Column
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public SportCenter(String name) {
+		super();
+		this.name = name;
+	}
+
+	public SportCenter() {
+		super();
+	}
+
+	@Override
+	public String toString() {
+		return "SportCenter [name=" + name + "]";
+	}
+	
 }
