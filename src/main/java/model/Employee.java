@@ -63,23 +63,12 @@ public class Employee extends PanacheEntity {
 	@JoinColumn(name = "bar_id", nullable = false)
 	private Bar bar;
 
-	@POST
-	@Path("/empAdd")
-	@Transactional
-	@Produces(MediaType.TEXT_PLAIN)
-	public String addEmployee(@QueryParam("name") String name, @QueryParam("barId") Long barId) {
-		Bar bar = Bar.findById(barId);
-		if (bar == null) {
-			return "bar not found.";
-		}
-
-		Employee e = new Employee();
-		e.name = name;
-		e.bar = bar;
-		e.persist();
-
-		return "Employee " + name + " added to bar " + bar.getName();
+	public Bar getBar() {
+		return bar;
 	}
 
+	public void setBar(Bar bar) {
+		this.bar = bar;
+	}
 }
 
